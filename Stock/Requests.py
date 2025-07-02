@@ -1,5 +1,5 @@
 import requests
-import json
+from .Candlestick import Candlestick
 import os
 import tomli
 
@@ -19,3 +19,26 @@ class Requests:
         with open(config_path, 'rb') as f:
             config = tomli.load(f)
         return config
+    
+    def stock_request(self, symbol, time_set="daily", full_output=True):
+        # create an array to hold the Candlestick objects
+        candlesticks = []
+        
+        # request the data input by user
+        base_url = self.config["endpoints"]["time_series"]
+        if full_output:
+            base_url += "&outputsize=full"
+        function = self.config["times"][time_set]
+        url = base_url.format(function, symbol, self.api_key)
+        r = requests.get(url)
+        data = r.json()
+
+        # ignore the meta data, only use candlestick data    
+        key = list(data.keys())[1]
+        data = data[key]
+
+        # create the Candlestick objects and add to array
+        for key, value in data.items():
+            candlesticks.append(Candlestick(key, value))
+        return candlesticks
+    

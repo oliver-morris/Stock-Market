@@ -1,5 +1,5 @@
 [endpoints]
-time_series = "https://www.alphavantage.co/query?function={}&symbol={}&outputsize=full&apikey={}"
+time_series = "https://www.alphavantage.co/query?function={}&symbol={}&apikey={}"
 
 [times]
 daily = "TIME_SERIES_DAILY"
