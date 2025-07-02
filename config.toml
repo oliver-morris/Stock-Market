@@ -1,0 +1,5 @@
+[endpoints]
+time_series = "https://www.alphavantage.co/query?function={}&symbol={}&outputsize=full&apikey={}"
+
+[times]
+daily = "TIME_SERIES_DAILY"

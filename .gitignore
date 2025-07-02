@@ -1,1 +1,6 @@
 .env
+ideas.txt
+main.py
+__pycache__
+.vscode
+UnitTests
